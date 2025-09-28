@@ -6,5 +6,5 @@
 
 int _printf(const char *format, ...);
 int _putchar(char c);
-int _putstr(va_list args);
+int _putpct(va_list args);
 #endif
