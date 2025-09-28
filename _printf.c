@@ -25,14 +25,8 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			if (_putchar(format[i] < 0))
-			{
-				va_end(args);
-				return (-1);
-			}
-			len++;
+			_putchar(format[i]);
 			i++;
-			continue;
 		}
 
 		if (format[i+1] == '\0')
@@ -58,7 +52,7 @@ int _printf(const char *format, ...)
 			count = 2;
 			break;
 		}
-		
+	
 		len += count;
 		i += 2;
 	}
