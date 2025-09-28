@@ -12,7 +12,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i , str_count, count = 0;
+	int i = 0 , len = 0, count;
 	
 	if (format == NULL)
 	{
@@ -21,34 +21,47 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	for (i = 0; format[i] != '\0'; i++)
+	while (format[i] != '\0')
 	{
 		if (format[i] != '%')
 		{
-			_putchar(format[i]);
+			if (_putchar(format[i] < 0))
+			{
+				va_end(args);
+				return (-1);
+			}
+			len++;
+			i++;
+			continue;
 		}
 
-		else if (format[i+1] == 'c')
+		if (format[i+1] == '\0')
 		{
-			_putchar(va_arg(args, int));
-			i++;
+			va_end(args);
+			return (-1);
+		}
+
+		switch (format[i+1])
+		{
+			case 'c':
+			count = _putchar(va_arg(args , int));
+			break;
+			case 's':
+			count = _putstr(args);
+			break;
+			case '%':
+			count = _putpct(args);
+			break;
+			default:
+			_putchar(format[i]);
+			_putchar(format[i+1]);
+			count = 2;
+			break;
 		}
 		
-		else if (format[i+1] == 's')
-		{
-			str_count = _putstr(args);
-			i++;
-			count += (str_count - 1);
-		}
-		else if (format[i+1] == '%')
-		{
-			_putchar('%');
-		}
-
-
-		count++;
+		len += count;
+		i += 2;
 	}
-
 	va_end(args);
-	return(count);
+	return (len);
 }
