@@ -9,6 +9,7 @@
 int print_char(va_list args)
 {
 	int ch = va_arg(args, int);
+
 	if (_putchar((char)ch) < 0)
 	{
 		return (-1);

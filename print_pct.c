@@ -1,10 +1,10 @@
 #include "main.h"
 
 /*
- * print_pct - print '%' character 
+ * print_pct - print '%' character
  * @args: unused
  *
- * Return: 1 on success , -1 on error 
+ * Return: 1 on success , -1 on error
  */
 int print_pct(va_list args)
 {

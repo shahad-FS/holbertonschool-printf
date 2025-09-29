@@ -9,4 +9,6 @@ int _putchar(char c);
 int print_char(va_list args);
 int print_str(va_list args);
 int print_pct(va_list args);
+int proc_format(const char *format, va_list args);
+int specifier(char spec, va_list args);
 #endif

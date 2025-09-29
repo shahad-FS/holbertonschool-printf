@@ -2,7 +2,7 @@
 
 /*
  * print_str - print string from va_list
- * @args: va_list 
+ * @args: va_list
  *
  * Return: number of printed characters or -1 on error
  */
@@ -15,8 +15,8 @@ int print_str(va_list args)
 	{
 		s = "(null)";
 	}
-	
-	while(s[i] != '\0')
+
+	while (s[i] != '\0')
 	{
 		if (_putchar(s[i]) < 0)
 		{
