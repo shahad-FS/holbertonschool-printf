@@ -1,70 +1,75 @@
 #include "main.h"
 #include <stdarg.h>
 
-/*
- * _printf - output a formatted strings 
- * @format: is character string. The format string is composed of zero or more
- * directives
- *
- * Return: The number of characters printed "excluding the null byte
- * used to end output to strings"
+
+
+/**
+ * _printf - simplified printf supporting %c, %s, %%
+ * @format: format string
+ * Return: number of chars printed (excluding null), or -1 on error
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int i = 0 , len = 0, count;
-	
-	if (format == NULL)
-	{
-		return (-1);
-	}
+    va_list args;
+    int i = 0, total = 0, res;
 
-	va_start(args, format);
+    if (format == NULL)
+        return (-1);
 
-	while (format[i] != '\0')
-	{
-		if (format[i] != '%')
-		{
-			_putchar(format[i]);
-			i++;
-		}
-		count++;
+    va_start(args, format);
 
-		if (format[i+1] == '\0')
-		{
-			va_end(args);
-			return (-1);
-		}
+    while (format[i] != '\0')
+    {
+        if (format[i] != '%')
+        {
+            if (_putchar(format[i]) < 0)
+            {
+                va_end(args);
+                return (-1);
+            }
+            total++;
+            i++;
+            continue;
+        }
 
-		switch (format[i+1])
-		{
-			case 'c':
-			count = _putchar(va_arg(args , int));
-			break;
-			case 's':
-			count = _putstr(args);
-			break;
-			case '%':
-			count = _putpct(args);
-			break;
-			default:
-			if (_putchar('%') < 0 || _putchar(format[i+1] < 0))
-			{
-				va_end(args);
-				return (-1);
-			}
-			count = 2;
-			break;
-		}
-		if (count < 0)
-		{
-			va_end(args);
-			return (-1);
-		}
-	
-		len += count;
-		i += 2;
-	}
-	va_end(args);
-	return (len);
+        if (format[i + 1] == '\0')
+        {
+            va_end(args);
+            return (-1);
+        }
+
+        switch (format[i + 1])
+        {
+            case 'c':
+                res = print_char(args);
+                break;
+            case 's':
+                res = print_str(args);
+                break;
+            case '%':
+                res = print_pct(args);
+                break;
+            default:
+                
+                if (_putchar('%') < 0 || _putchar(format[i + 1]) < 0)
+                {
+                    va_end(args);
+                    return (-1);
+                }
+                res = 2;
+                break;
+        }
+
+        if (res < 0)
+        {
+            va_end(args);
+            return (-1);
+        }
+
+        total += res;
+        i += 2;
+    }
+
+    va_end(args);
+    return (total);
 }
