@@ -21,13 +21,14 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	while (format)
+	while (format[i] != '\0')
 	{
 		if (format[i] != '%')
 		{
 			_putchar(format[i]);
 			i++;
 		}
+		count++;
 
 		if (format[i+1] == '\0')
 		{
@@ -47,10 +48,18 @@ int _printf(const char *format, ...)
 			count = _putpct(args);
 			break;
 			default:
-			_putchar(format[i]);
-			_putchar(format[i+1]);
+			if (_putchar('%') < 0 || _putchar(format[i+1] < 0))
+			{
+				va_end(args);
+				return (-1);
+			}
 			count = 2;
 			break;
+		}
+		if (count < 0)
+		{
+			va_end(args);
+			return (-1);
 		}
 	
 		len += count;
