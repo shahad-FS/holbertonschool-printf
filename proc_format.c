@@ -20,7 +20,7 @@ int proc_format(const char *format, va_list args)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i+1] == '\0')
+			if (format[i + 1] == '\0')
 			{
 				return (-1);
 			}

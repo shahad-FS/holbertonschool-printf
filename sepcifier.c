@@ -32,7 +32,7 @@ int specifier(char spec, va_list args)
 			{
 				return (-1);
 			}
-			
+
 			res = 2;
 			break;
 	}
