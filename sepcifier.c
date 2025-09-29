@@ -23,6 +23,10 @@ int specifier(char spec, va_list args)
 		case '%':
 			res = print_pct(args);
 			break;
+		case 'd':
+		case 'i':
+			res = print_int(args);
+			break;
 		default:
 			if (_putchar('%') < 0)
 			{
