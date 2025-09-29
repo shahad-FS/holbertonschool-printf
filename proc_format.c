@@ -11,10 +11,19 @@ int proc_format(const char *format, va_list args)
 {
 	int i = 0, len = 0, count;
 
-	while (format && format[i])
+	if (format == NULL)
+	{
+		return (-1);
+	}
+
+	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
+			if (format[i+1] == '\0')
+			{
+				return (-1);
+			}
 			i++;
 			count = specifier(format[i], args);
 			if (count == -1)
@@ -25,7 +34,10 @@ int proc_format(const char *format, va_list args)
 		}
 		else
 		{
-			_putchar(format[i]);
+			if (_putchar(format[i]) < 0)
+			{
+				return (-1);
+			}
 			len++;
 		}
 		i++;
