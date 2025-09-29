@@ -1,11 +1,12 @@
 #include "main.h"
 #include <stdarg.h>
 
-/*
- * proc_format - iterate over the format string and handel specifier
- * @format: the format string to be parse
+/**
+ * proc_format - iterates over the format string and handles specifiers
+ * @format: the format string to parse
+ * @args: va_list of arguments to print
  *
- * Return: the total number of character printed , or -1 on error
+ * Return: total number of characters printed, or -1 on error
  */
 int proc_format(const char *format, va_list args)
 {

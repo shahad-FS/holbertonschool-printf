@@ -1,12 +1,12 @@
 #include "main.h"
 #include <stdarg.h>
 
-/*
- * specifier - handel single specifier
- * @spec: the specifier character
- * @args: va_list containing the arrgument
+/**
+ * specifier - chooses the correct printing function for a format specifier
+ * @spec: the format specifier character (e.g., 'c', 's', '%')
+ * @args: va_list containing the arguments to print
  *
- * Return: number of characters or -1 on error
+ * Return: number of characters printed, or -1 on error
  */
 int specifier(char spec, va_list args)
 {

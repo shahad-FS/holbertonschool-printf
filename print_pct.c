@@ -1,10 +1,10 @@
 #include "main.h"
 
-/*
- * print_pct - print '%' character
- * @args: unused
+/**
+ * print_pct - prints a percent sign '%'
+ * @args: va_list of arguments (not used)
  *
- * Return: 1 on success , -1 on error
+ * Return: number of characters printed (1)
  */
 int print_pct(va_list args)
 {

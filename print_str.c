@@ -1,10 +1,10 @@
 #include "main.h"
 
-/*
- * print_str - print string from va_list
- * @args: va_list
+/**
+ * print_str - prints a string
+ * @args: va_list containing the string to print
  *
- * Return: number of printed characters or -1 on error
+ * Return: number of characters printed
  */
 int print_str(va_list args)
 {

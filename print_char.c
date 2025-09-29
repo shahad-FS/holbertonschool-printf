@@ -1,10 +1,10 @@
 #include "main.h"
 
-/*
- * print_char - prints a char from va_list
- * @args: va_list
+/**
+ * print_char - prints a single character
+ * @args: va_list containing the character to print
  *
- * Return: number of printed characters or -1 on error
+ * Return: number of characters printed (1)
  */
 int print_char(va_list args)
 {
