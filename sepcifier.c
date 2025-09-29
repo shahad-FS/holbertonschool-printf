@@ -10,11 +10,31 @@
  */
 int specifier(char spec, va_list args)
 {
-	if (spec == 'c')
-		return (print_char(args));
-	if (spec == 's')
-		return (print_str(args));
-	if (spec == '%')
-		return (print_pct(args));
-	return (-1);
+	int res;
+
+	switch (spec)
+	{
+		case 'c':
+			res = print_char(args);
+			break;
+		case 's':
+			res = print_str(args);
+			break;
+		case '%':
+			res = print_pct(args);
+			break;
+		default:
+			if (_putchar('%') < 0)
+			{
+				return (-1);
+			}
+			if (_putchar(spec) < 0)
+			{
+				return (-1);
+			}
+			
+			res = 2;
+			break;
+	}
+	return (res);
 }
