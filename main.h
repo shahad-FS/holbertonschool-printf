@@ -12,4 +12,6 @@ int print_pct(va_list args);
 int proc_format(const char *format, va_list args);
 int specifier(char spec, va_list args);
 int print_int(va_list args);
+int print_bin(va_list val);
+
 #endif
