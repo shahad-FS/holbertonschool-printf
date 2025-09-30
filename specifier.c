@@ -13,6 +13,9 @@ int specifier(char spec, va_list args)
 		case 's':
 			res = print_str(args);
 			break;
+		case 'S':
+			res = print_S(args);
+			break;
 		case '%':
 			res = print_pct(args);
 			break;
@@ -30,10 +33,10 @@ int specifier(char spec, va_list args)
 			res = print_octal(args);
 			break;
 		case 'x':
-			res = print_hex(args, 0);
+			res = print_hex_lower(args);
 			break;
 		case 'X':
-			res = print_hex(args, 1);
+			res = print_hex_upper(args);
 			break;
 		default:
 			if (_putchar('%') < 0)
