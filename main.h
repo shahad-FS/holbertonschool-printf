@@ -21,5 +21,8 @@ int print_hex_lower(va_list args);
 int print_hex_upper(va_list args);
 int print_pointer(va_list args);
 int print_reverse(va_list args);
+int _puts(char *str);
+int print_ptr(va_list args);
+int print_hex_address(unsigned long int num);
 
 #endif
