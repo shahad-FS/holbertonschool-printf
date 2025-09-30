@@ -25,3 +25,14 @@ int print_hex(va_list args, int uppercase)
 
 	return count;
 }
+
+int print_hex_lower(va_list args)
+{
+	return print_hex(args, 0);
+}
+
+int print_hex_upper(va_list args)
+{
+	return print_hex(args, 1);
+}
+
