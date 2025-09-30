@@ -1,34 +1,33 @@
 #include "main.h"
-/**
- * print_bin - converts to binary
- * @val : argument
- * Return: integer
- */
+
 int print_bin(va_list val)
 {
-	int flag = 0;
-	int cont = 0;
-	int i , a = 1, b;
-	unsigned int num = va_arg(val , unsigned int);
-	unsigned int p;
+	unsigned int num = va_arg(val, unsigned int);
+	int i, count = 0;
+	int started = 0;
+	unsigned int mask = 1 << 31;
 
 	for (i = 0; i < 32; i++)
 	{
-		p = ((a << (32 - i)) & num);
-		if (p >> (31- i))
-			flag = 1;
-		if (flag)
+		if (num & mask)
 		{
-			b = p >> (31 - i);
-			_putchar(b + 48);
-			cont++;
+			_putchar('1');
+			count++;
+			started = 1;
 		}
+		else if (started)
+		{
+			_putchar('0');
+			count++;
+		}
+		mask >>= 1;
 	}
-	if (cont == 0)
-	{
-		cont++;
-		_putchar('0')  ;
-	}
-	return (cont);
-}
 
+	if (count == 0)
+	{
+		_putchar('0');
+		count = 1;
+	}
+
+	return count;
+}
