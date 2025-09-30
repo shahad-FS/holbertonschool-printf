@@ -13,5 +13,8 @@ int proc_format(const char *format, va_list args);
 int specifier(char spec, va_list args);
 int print_int(va_list args);
 int print_bin(va_list val);
+int print_uns(va_list args);
+int print_oct(va_list args);
+int print_hex(va_list args, int uppercase);
 
 #endif

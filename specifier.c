@@ -23,6 +23,18 @@ int specifier(char spec, va_list args)
 		case 'b':
 			res = print_bin(args);
 			break;
+		case 'u':
+			res = print_uns(args);
+			break;
+		case 'o':
+			res = print_oct(args);
+			break;
+		case 'x':
+			res = print_hex(args, 0);
+			break;
+		case 'X':
+			res = print_hex(args, 1);
+			break;
 		default:
 			if (_putchar('%') < 0)
 				return (-1);
@@ -33,3 +45,4 @@ int specifier(char spec, va_list args)
 	}
 	return (res);
 }
+
