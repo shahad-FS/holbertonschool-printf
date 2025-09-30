@@ -24,10 +24,10 @@ int specifier(char spec, va_list args)
 			res = print_bin(args);
 			break;
 		case 'u':
-			res = print_uns(args);
+			res = print_unsigned(args);
 			break;
 		case 'o':
-			res = print_oct(args);
+			res = print_octal(args);
 			break;
 		case 'x':
 			res = print_hex(args, 0);
