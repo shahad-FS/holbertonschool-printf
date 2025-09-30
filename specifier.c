@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdarg.h>
 
 int specifier(char spec, va_list args)
 {
@@ -38,6 +37,9 @@ int specifier(char spec, va_list args)
 		case 'X':
 			res = print_hex_upper(args);
 			break;
+		case 'p':
+			res = print_pointer(args);
+			break;
 		default:
 			if (_putchar('%') < 0)
 				return (-1);
@@ -46,6 +48,7 @@ int specifier(char spec, va_list args)
 			res = 2;
 			break;
 	}
-	return (res);
+
+	return res;
 }
 
