@@ -21,7 +21,7 @@ int specifier(char spec, va_list args)
 			res = print_int(args);
 			break;
 		case 'b':
-			res = print_binary(args);
+			res = print_bin(args);
 			break;
 		default:
 			if (_putchar('%') < 0)
