@@ -10,7 +10,6 @@
 int print_str(va_list args, format_flags_t *f)
 {
 	char *s = va_arg(args, char *);
-	int i = 0;
 	int len = 0;
 
 	if (s == NULL)
@@ -18,7 +17,7 @@ int print_str(va_list args, format_flags_t *f)
 		s = "(null)";
 	}
 
-	while (s[i] != '\0')
+	while (s[len] != '\0')
 	{
 		len ++;
 	}

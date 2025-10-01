@@ -14,22 +14,50 @@ int print_with_width(const char *str, int len, format_flags_t *f)
     int padding = 0;
     int i;
 
-    if (f->width > len)
+    if (f == NULL)
+    {
+        for (i = 0; i < len; i++)
+        {
+            if (_putchar(str[i]) < 0)
+                return -1;
+            count++;
+        }
+        return count;
+    }
+
+        if (f->width > len)
         padding = f->width - len;
+    else
+        padding = 0;
 
-    
     if (!f->minus)
+    {
         for (i = 0; i < padding; i++)
-            count += _putchar(' ');
+        {
+            if (_putchar(' ') < 0)
+                return -1;
+            count++;
+        }
+    }
 
-   
+
     for (i = 0; i < len; i++)
-        count += _putchar(str[i]);
+    {
+        if (_putchar(str[i]) < 0)
+            return -1;
+        count++;
+    }
 
 
     if (f->minus)
+    {
         for (i = 0; i < padding; i++)
-            count += _putchar(' ');
+        {
+            if (_putchar(' ') < 0)
+                return -1;
+            count++;
+        }
+    }
 
     return count;
 }
