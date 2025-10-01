@@ -43,6 +43,9 @@ int specifier(char spec, va_list args, format_flags_t *f)
 		case 'p':
 			res = print_pointer(args);
 			break;
+		case 'r':
+			res = print_rev(args);
+			break;
 		default:
 			if (_putchar('%') < 0)
 				return (-1);

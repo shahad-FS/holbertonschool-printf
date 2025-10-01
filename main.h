@@ -30,5 +30,6 @@ int print_hex_lower(va_list args, format_flags_t *f);
 int print_hex_upper(va_list args, format_flags_t *f);
 int print_S(va_list args);
 int print_pointer(va_list args);
+int print_rev(va_list args);
 
 #endif
