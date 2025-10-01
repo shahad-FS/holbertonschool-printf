@@ -10,10 +10,10 @@ int specifier(char spec, va_list args, format_flags_t *f)
 	switch (spec)
 	{
 		case 'c':
-			res = print_char(args);
+			res = print_char(args, f);
 			break;
 		case 's':
-			res = print_str(args);
+			res = print_str(args, f);
 			break;
 		case 'S':
 			res = print_S(args);

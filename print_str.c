@@ -3,13 +3,15 @@
 /**
  * print_str - prints a string
  * @args: va_list containing the string to print
+ * @f: pointer to format_flags_t containing flags and width
  *
  * Return: number of characters printed
  */
-int print_str(va_list args)
+int print_str(va_list args, format_flags_t *f)
 {
 	char *s = va_arg(args, char *);
 	int i = 0;
+	int len = 0;
 
 	if (s == NULL)
 	{
@@ -18,12 +20,7 @@ int print_str(va_list args)
 
 	while (s[i] != '\0')
 	{
-		if (_putchar(s[i]) < 0)
-		{
-			return (-1);
-		}
-
-		i++;
+		len ++;
 	}
-	return (i);
+	return print_with_width(s, len, f);
 }

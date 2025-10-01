@@ -16,8 +16,8 @@ typedef struct
 
 int _printf(const char *format, ...);
 int _putchar(char c);
-int print_char(va_list args);
-int print_str(va_list args);
+int print_char(va_list args, format_flags_t *f);
+int print_str(va_list args, format_flags_t *f);
 int print_pct(va_list args);
 int proc_format(const char *format, va_list args);
 int specifier(char spec, va_list args, format_flags_t *f);
@@ -31,5 +31,6 @@ int print_hex_upper(va_list args, format_flags_t *f);
 int print_S(va_list args);
 int print_pointer(va_list args);
 int print_rev(va_list args);
+int print_with_width(const char *str, int len, format_flags_t *f);
 
 #endif
