@@ -1,8 +1,11 @@
 #include "main.h"
 
-int specifier(char spec, va_list args)
+int specifier(char spec, va_list args, format_flags_t *f)
 {
 	int res;
+	
+
+	
 
 	switch (spec)
 	{
@@ -20,22 +23,22 @@ int specifier(char spec, va_list args)
 			break;
 		case 'd':
 		case 'i':
-			res = print_int(args);
+			res = print_int(args, f);
 			break;
 		case 'b':
-			res = print_bin(args);
+			res = print_bin(args, f);
 			break;
 		case 'u':
-			res = print_unsigned(args);
+			res = print_unsigned(args, f);
 			break;
 		case 'o':
-			res = print_octal(args);
+			res = print_octal(args,f);
 			break;
 		case 'x':
-			res = print_hex_lower(args);
+			res = print_hex(args, 0, f);
 			break;
 		case 'X':
-			res = print_hex_upper(args);
+			res = print_hex(args, 1, f);
 			break;
 		case 'p':
 			res = print_pointer(args);
@@ -51,4 +54,3 @@ int specifier(char spec, va_list args)
 
 	return res;
 }
-
