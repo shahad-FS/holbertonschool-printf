@@ -35,10 +35,10 @@ int specifier(char spec, va_list args, format_flags_t *f)
 			res = print_octal(args,f);
 			break;
 		case 'x':
-			res = print_hex(args, 0, f);
+			res = print_hex(args, f, 0);
 			break;
 		case 'X':
-			res = print_hex(args, 1, f);
+			res = print_hex(args, f, 1);
 			break;
 		case 'p':
 			res = print_pointer(args);

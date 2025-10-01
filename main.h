@@ -25,7 +25,9 @@ int print_int(va_list args, format_flags_t *f);
 int print_bin(va_list val, format_flags_t *f);
 int print_unsigned(va_list args,format_flags_t *f);
 int print_octal(va_list args, format_flags_t *f);
-int print_hex(va_list args, int uppercase, format_flags_t *f);
+int print_hex(va_list args, format_flags_t *f, int uppercase);
+int print_hex_lower(va_list args, format_flags_t *f);
+int print_hex_upper(va_list args, format_flags_t *f);
 int print_S(va_list args);
 int print_pointer(va_list args);
 

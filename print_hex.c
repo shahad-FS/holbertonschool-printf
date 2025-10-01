@@ -1,95 +1,56 @@
 #include "main.h"
 
-int print_hex(va_list args, int uppercase, format_flags_t *f)
+int print_hex(va_list args, format_flags_t *f, int uppercase)
 {
-	unsigned int n = va_arg(args, unsigned int);
-	char buffer[32];
-	int i = 0, printed = 0;
-	char offset = uppercase ? ('A' - 10) : ('a' - 10);
-	int need_prefix = 0, content_len = 0;
-	int prefix_len = 0, total = 0;
-	int pad = 0;
-	int width = f->width;
-	int minus_flag = f->minus;
-	int a, b, k, p;
+    unsigned int n = va_arg(args, unsigned int);
+    char buffer[20];
+    int i = 0, count = 0;
+    int num_len = 0;
+    char offset = uppercase ? 'A' - 10 : 'a' - 10;
+    int padding = 0;
 
-	if (f->hash && n != 0)
-	{
-		need_prefix = 1;
-	}
+    /* Special case: n = 0 */
+    if (n == 0)
+        buffer[i++] = '0';
 
-	if (n == 0)
-	{
-		buffer[i++] = '0';
-	}
-	else
-	{
-		unsigned int tmp = n;
-		while (tmp > 0)
-		{
-			int digit = tmp % 16;
-			buffer[i++] = (digit < 10) ? (digit + '0') : (digit + offset);
-			tmp /= 16;
-		}
-		for (a = 0, b = i - 1; a < b; a++, b--)
-		{
-			char t = buffer[a];
-			buffer[a] = buffer[b];
-			buffer[b] = t;
-		}
-	}
-	content_len = i;
-	prefix_len = need_prefix ? 2 : 0;
-	total = prefix_len + content_len;
+    /* Convert number to hex string in reverse */
+    while (n > 0)
+    {
+        int digit = n % 16;
+        buffer[i++] = (digit < 10) ? (digit + '0') : (digit + offset);
+        n /= 16;
+    }
 
-	if (width > total)
-	{
-		pad = width - total;
-	}
+    num_len = i;
 
-	if (minus_flag)
-	{
-		if (need_prefix)
-		{
-			_putchar('0');
-			_putchar(uppercase ? 'X' : 'x');
-			printed += 2;
-		}
-		for (k = 0; k < content_len; k++)
-		{
-			_putchar(buffer[k]);
-			printed++;
-		}
-		for (p = 0; p < pad; p++)
-		{
-			_putchar('0');
-			printed++;
-		}
-		for (k = 0; k < content_len; k++)
-		{
-			_putchar(buffer[k]);
-			printed++;
-		}
-	}
-	else
-	{
-		for (p = 0; p < pad; p++)
-		{
-			_putchar(' ');
-			printed++;
-		}
-		if (need_prefix)
-		{
-			_putchar('0');
-			_putchar(uppercase ? 'X' : 'x');
-			printed += 2;
-		}
-		for (k = 0; k < content_len; k++)
-		{
-			_putchar(buffer[k]);
-			printed++;
-		}
-	}
-	return (printed);
+    /* Calculate padding */
+    if (f->width > num_len)
+        padding = f->width - num_len;
+
+    /* Print zero padding if zero flag set and not left-adjusted */
+    if (f->zero && !f->minus)
+        for (; padding > 0; padding--)
+            count += _putchar('0');
+
+    /* Print number in correct order */
+    while (i--)
+        count += _putchar(buffer[i]);
+
+    /* If left-adjusted, add spaces after */
+    if (f->minus)
+        for (; padding > 0; padding--)
+            count += _putchar(' ');
+
+    return count;
+}
+
+int print_hex_lower(va_list args, format_flags_t *f)
+{
+    return print_hex(args, f, 0);
+}
+
+int print_hex_upper(va_list args, format_flags_t *f)
+{
+    return print_hex(args, f, 1);
 }
 
