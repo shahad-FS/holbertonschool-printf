@@ -12,6 +12,7 @@ int proc_format(const char *format, va_list args)
 {
     int i = 0, len = 0, count;
 	format_flags_t f;
+	int w;
 
     if (format == NULL)
         return (-1);
@@ -59,10 +60,24 @@ int proc_format(const char *format, va_list args)
 				f.space = 0;
 			}
 
-			while (format[i] >= '0' && format[i] <= '9')
-			{
+            if (format[i] == '*')
+            {
+                w = va_arg(args, int);
+                if (w < 0)
+                {
+                    f.minus = 1;
+                    w = -w;
+                }
+                f.width = w;
+                i++;
+            }
+            else
+            {
+				while (format[i] >= '0' && format[i] <= '9')
+				{
 				f.width = f.width * 10 + (format[i] - '0');
 				i++;
+				}
 			}
 			
 			if (format[i] == '\0')
