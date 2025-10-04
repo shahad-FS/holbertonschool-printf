@@ -13,30 +13,96 @@ The function supports the following conversion specifiers:
 .TP
 c
 Print a single character.
+
 .TP
 s
 Print a string of characters.
+
 .TP
 %
 Print a percent sign.
+
 .TP
 d, i
 Print an integer in base 10.
 
-Flags, field width, precision, and length modifiers are not supported in this version.
+.TP
+u
+Print an unsigned integer in base 10.
+
+.TP
+o
+Print an unsigned integer in octal (base 8).
+
+.TP
+x
+Print an unsigned integer in hexadecimal (base 16, lowercase).
+
+.TP
+X
+Print an unsigned integer in hexadecimal (base 16, uppercase).
+
+.TP
+b
+Print an unsigned integer in binary (base 2).
+
+.TP
+S
+Print a string of characters, where non-printable characters (ASCII < 32 or >= 127) are printed as `\x` followed by the ASCII code in hexadecimal.
+
+.TP
+p
+Print a pointer (address in hexadecimal).
+
+.TP
+r
+Print the reversed string.
+
+.SH FLAGS AND MODIFIERS
+_printf supports the following flags and width specification:
+
+.TP
+#
+Used with `o`, `x`, or `X` specifiers to prefix the output with `0`, `0x`, or `0X` respectively.
+
+.TP
++
+Prefix a positive number with `+`.
+
+.TP
+(space)
+Prefix a positive number with a space.
+
+.TP
+-
+Left-justify the output within the given field width.
+
+.TP
+0
+Pad the output with zeros instead of spaces when a width is specified.
+
+.TP
+Width
+Minimum number of characters to be printed. If the value to be printed is shorter than this width, the result is padded with spaces or zeros (depending on flags).
 
 .SH RETURN VALUE
 On success, the total number of characters printed is returned.
 On error, -1 is returned.
 
 .SH EXAMPLES
-printf("Hello, World!\n");
-printf("Number: %d\n", 42);
+_printf("Hello, World!\n");
+_printf("Number: %d\n", 42);
+_printf("Binary: %b\n", 5);
+_printf("Unsigned: %u\n", 300);
+_printf("Octal: %o\n", 255);
+_printf("Hex: %x %X\n", 255, 255);
+_printf("Pointer: %p\n", ptr);
+_printf("Reversed: %r\n", "hello");
+_printf("Special string: %S\n", "Best\nDay");
 
 .SH NOTES
 This is a custom implementation of the standard printf function for educational purposes.
 
 .SH AUTHOR
 Shahad Alsaneea <alsaneea.s@gmail.com>
-
-
+Omar Alanzi <Donz.h.h@gmail.com>
